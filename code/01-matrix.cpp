@@ -4,16 +4,19 @@ using namespace std;
 
 vector<vector<int>> readMatrix(int r, int c) {
   vector<vector<int>> m(r, vector<int>(c));
-  for (int i = 0; i < r; i++)
-    for (int j = 0; j < c; j++)
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++) {
       cin >> m[i][j];
+    }
+  }
   return m;
 }
 
 void printMatrix(const vector<vector<int>> &m) {
   for (auto &row : m) {
-    for (auto &val : row)
+    for (auto &val : row) {
       cout << val << "\t";
+    }
     cout << endl;
   }
 }
