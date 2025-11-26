@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void dfsRec(vector<vector<int>> &adj, vector<bool> &visited,
+            int s, vector<int> &res) {
+
+    visited[s] = true;
+    res.push_back(s);
+
+    for (int x : adj[s]) {
+        if (!visited[x]) {
+            dfsRec(adj, visited, x, res);
+        }
+    }
+}
+
+vector<int> dfs(vector<vector<int>> &adj) {
+    vector<bool> visited(adj.size(), false);
+    vector<int> res;
+
+    dfsRec(adj, visited, 0, res);
+
+    return res;
+}
+
+void addEdge(vector<vector<int>>& adj, int u, int v) {
+    adj[u].push_back(v);
+    adj[v].push_back(u);
+}
+
+int main() {
+    int V = 5;
+    vector<vector<int>> adj(V);
+
+    addEdge(adj, 1, 2);
+    addEdge(adj, 1, 0);
+    addEdge(adj, 2, 0);
+    addEdge(adj, 2, 3);
+    addEdge(adj, 2, 4);
+
+    vector<int> res = dfs(adj);
+
+    cout << "DFS Traversal: ";
+    for (int x : res) {
+        cout << x << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+/*
+DFS Traversal: 0 1 2 3 4
+*/
